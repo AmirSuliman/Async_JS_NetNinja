@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Fetch API Example</title>
+</head>
+
+<body>
+  <h1>Fetching Data from Multiple Endpoints</h1>
+
+  <script>
+    // First endpoint to fetch data from
+    const endpoint1 = 'https://wft-geo-db.p.rapidapi.com/v1/geo/countries';
+
+    // Fetch data from first endpoint
+    fetch(endpoint1, {
+      headers: {
+        'x-rapidapi-key': 'your-api-key',
+        'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com'
+      }
+    })
+      .then(response => response.json())
+      .then(data1 => {
+        console.log(data1);
+
+        // Second endpoint to fetch data from
+        const endpoint2 = 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities';
+
+        // Fetch data from second endpoint
+        return fetch(endpoint2, {
+          headers: {
+            'x-rapidapi-key': 'your-api-key',
+            'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com'
+          }
+        });
+      })
+      .then(response => response.json())
+      .then(data2 => {
+        console.log(data2);
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+
+</html>
